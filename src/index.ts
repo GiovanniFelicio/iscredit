@@ -1,23 +1,35 @@
 import "reflect-metadata";
 import {createConnection} from "typeorm";
-import {User} from "./entity/User";
+import * as express from "express";
+import {Request, Response} from "express";
+import {User} from "./models/User";
+import {EnumRoleUser} from "@enums/EnumRoleUser";
 
 createConnection().then(async connection => {
 
-    console.log("Inserting a new user into the database...");
-    const user = new User();
-    user.name = "Giovanni";
-    user.username = "giovannifc";
-    user.password = 'gfc563';
-    user.email = 'giovanni@smartbr.com';
-    user.role = 5;
-    await connection.manager.save(user);
-    console.log("Saved a new user with id: " + user.id);
+    const app = express();
+    app.use(express.json());
 
-    console.log("Loading users from the database...");
-    const users = await connection.manager.find(User);
-    console.log("Loaded users: ", users);
+    app.get("/user", async (req: Request, res: Response) => {
+        const user = new User();
+        user.name = "Giovanni";
+        user.login = "giovannifc";
+        user.password = 'gfc563';
+        user.email = 'giovanni@smartbr.com';
+        user.role = EnumRoleUser.ADMIN;
+        await connection.manager.save(user);
+    });
 
-    console.log("Here you can setup and run express/koa/any other framework.");
+    app.get("/user/:id", async (req: Request, res: Response) => {
+        const user: User = await connection.manager.findOne(User, req.params.id);
+        res.send(user.name);
+    });
+
+    app.get("/", (req: Request, res: Response) => {
+        res.send("Hello World");
+    });
+
+
+    app.listen(3000);
 
 }).catch(error => console.log(error));
