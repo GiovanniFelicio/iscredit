@@ -17,7 +17,8 @@
          "@config/*": ["./src/config/*"],
          "@utils/*": ["./src/utils/*"],
          "@enums/*": ["./src/enums/*"],
-         "@interfaces/*": ["./src/interfaces/*"]
+         "@interfaces/*": ["./src/interfaces/*"],
+         "@routes/*": ["./src/routes/*"]
       }
    }
 }

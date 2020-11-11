@@ -5,7 +5,7 @@
    "username": "root",
    "password": "09112013",
    "database": "learn",
-   "synchronize": true,
+   "synchronize": false,
    "logging": false,
    "entities": [
       "src/models/**/*.ts"

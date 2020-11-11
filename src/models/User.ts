@@ -7,7 +7,7 @@ import {
 
 import {EnumRoleUser} from '@enums/EnumRoleUser';    
 
-@Entity('user')
+@Entity('USER')
 export class User {
 
     @PrimaryGeneratedColumn()
@@ -28,10 +28,10 @@ export class User {
     @Column({nullable: false, length: 2})
     role: EnumRoleUser;
 
-    @CreateDateColumn()
-    created_at: Date;
+    @CreateDateColumn({name: 'created_at'})
+    createdAt: Date;
 
-    @UpdateDateColumn()
-    updated_at: Date;
+    @UpdateDateColumn({ name: 'updated_at' })
+    updatedAt: Date;
     
 }
