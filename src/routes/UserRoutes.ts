@@ -10,5 +10,4 @@ routes.get('/test', (req, res) => {
 
 routes.get('/:id', UserController.create);
 
-
 export default routes;

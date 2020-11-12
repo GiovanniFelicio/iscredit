@@ -3,11 +3,11 @@ import { createConnection } from "typeorm";
 import * as express from "express";
 import {Request, Response, NextFunction} from "express";
 import routes from "@routes/routes";
-import expressHandle from 'express-handlebars';
+import * as expressHandle from 'express-handlebars';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
 import * as session from 'express-session';
-import * as flash from 'connect-flash';
+import {flash} from 'express-flash-message';
 import * as cookie from 'cookie-parser';
 import * as passport from 'passport';
 import * as auth from '@config/auth';
@@ -20,7 +20,6 @@ class Main{
 
     constructor() {
         createConnection().then(async connection => {
-
             this.app = express();        
     
             this.initializeMiddlewares();
@@ -32,8 +31,12 @@ class Main{
     
             //Path
             this.app.use(express.static(path.join(__dirname, 'static')));
+            //Set View
+            this.app.set('views', path.join(__dirname, 'static/views'));
             //Routes
-            this.app.use(routes);                
+            this.app.use(routes);
+            
+            this.listen();
 
         }).catch(error => console.log(error));
     }
@@ -74,7 +77,7 @@ class Main{
     }
 
     private initializeMessageFlash() {
-        this.app.use(flash());
+        this.app.use(flash())
         this.app.use((req: Request, res: Response, next: NextFunction) => {
             res.locals.success_msg = req.flash('success_msg');
             res.locals.error_msg = req.flash('error_msg');
@@ -85,11 +88,13 @@ class Main{
     }
 
     public listen() {
-        this.app.listen(3000);
+        this.app.listen(3000, ()=>{
+            console.log('Server is running');
+        });
     }
 }
 
-new Main();
+export default new Main();
 
 // app.use((req: Request, res: Response, next: NextFunction) => {
 //     let error = new Error('Not Found');

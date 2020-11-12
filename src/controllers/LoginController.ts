@@ -2,26 +2,21 @@ import { Request, Response } from "express";
 import * as passport from "passport";
 
 class LoginCotroller{
-    index(req: Request, res: Response){
-        var errors = req.cookies['errors'];
-        var success = req.cookies['success'];
-        res.clearCookie("errors", { httpOnly: true });
-        res.clearCookie("success", { httpOnly: true });
+    async index(req: Request, res: Response){
         return res.render('auth/login',{
             layout: '',
             css: ['bootstrap.css',
                 'all.min.css'],
             vendors: ['styles/style.css'],
             js: ['jquery.min.js', 
-                'bootstrap.js'],
-            errors: errors,
-            success: success
+                'bootstrap.js']
         });
     }
     login(req: Request, res: Response,next){
+        console.log(req.body);
         passport.authenticate('local', {
             successRedirect: '/',
-            failureRedirect: '/login',
+            failureRedirect: '/auth/login',
             failureFlash: true
         })(req,res,next);
     }
