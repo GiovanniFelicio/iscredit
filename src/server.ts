@@ -6,9 +6,9 @@ import routes from "@routes/routes";
 import expressHandle from 'express-handlebars';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
-import session from 'express-session';
-import flash from 'connect-flash';
-import cookie from 'cookie-parser';
+import * as session from 'express-session';
+import * as flash from 'connect-flash';
+import * as cookie from 'cookie-parser';
 import * as passport from 'passport';
 import * as auth from '@config/auth';
 import utils from '@utils/conditions';
@@ -56,7 +56,7 @@ class Main{
     }
 
     private initializeCache() {
-        // this.app.use(cookie());
+        this.app.use(cookie());
         this.app.use(session({
             secret: 'dwdjk#n152478D4DSFF4&bd!vy&',
             resave: true,
