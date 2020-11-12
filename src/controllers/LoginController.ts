@@ -1,24 +1,24 @@
-import { Request, Response } from "express";
-import * as passport from "passport";
+import { NextFunction, Request, Response } from "express";
+import passport from "passport";
 
-class LoginCotroller{
-    async index(req: Request, res: Response){
-        return res.render('auth/login',{
+class LoginCotroller {
+    async index(req: Request, res: Response) {
+        return res.render('auth/login', {
             layout: '',
             css: ['bootstrap.css',
                 'all.min.css'],
             vendors: ['styles/style.css'],
-            js: ['jquery.min.js', 
+            js: ['jquery.min.js',
                 'bootstrap.js']
         });
     }
-    login(req: Request, res: Response,next){
-        console.log(req.body);
+    login(req: Request, res: Response, next: NextFunction) {
         passport.authenticate('local', {
-            successRedirect: '/',
+            successRedirect: '/auth/login',
             failureRedirect: '/auth/login',
-            failureFlash: true
-        })(req,res,next);
+            failureFlash: true,
+            successFlash: true,
+        })(req, res, next);
     }
 }
 

@@ -1,15 +1,15 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import * as express from "express";
+import express from "express";
 import {Request, Response, NextFunction} from "express";
 import routes from "@routes/routes";
-import * as expressHandle from 'express-handlebars';
+import expressHandle from 'express-handlebars';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
-import * as session from 'express-session';
-import {flash} from 'express-flash-message';
-import * as cookie from 'cookie-parser';
-import * as passport from 'passport';
+import session from 'express-session';
+import flash from 'express-flash';
+import cookie from 'cookie-parser';
+import passport from 'passport';
 import * as auth from '@config/auth';
 import utils from '@utils/conditions';
 import errorMiddleware from './middlewares/error'
@@ -63,7 +63,8 @@ class Main{
         this.app.use(session({
             secret: 'dwdjk#n152478D4DSFF4&bd!vy&',
             resave: true,
-            saveUninitialized: true
+            saveUninitialized: true,
+            cookie: {maxAge: 60000}
         }));
     }
 
@@ -79,9 +80,9 @@ class Main{
     private initializeMessageFlash() {
         this.app.use(flash())
         this.app.use((req: Request, res: Response, next: NextFunction) => {
-            res.locals.success_msg = req.flash('success_msg');
-            res.locals.error_msg = req.flash('error_msg');
+            res.locals.success = req.flash('success');
             res.locals.error = req.flash('error');
+            res.locals.warning = req.flash('warning');
             res.locals.user = req.user || null;
             next();
         });
