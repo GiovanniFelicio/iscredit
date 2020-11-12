@@ -19,9 +19,10 @@ class Main{
     public app: express.Application;
 
     constructor() {
-        createConnection().then(async connection => {
+        
             this.app = express();        
-    
+
+            this.initializeDatabase();
             this.initializeMiddlewares();
             this.initializeErrorHandling();
             this.initializeCache();
@@ -38,7 +39,13 @@ class Main{
             
             this.listen();
 
-        }).catch(error => console.log(error));
+        
+    }
+
+    private initializeDatabase() {
+        createConnection().then(() => {
+            console.log("Database Connected !!");
+        });
     }
 
     private initializeMiddlewares() {
@@ -96,32 +103,3 @@ class Main{
 }
 
 export default new Main();
-
-// app.use((req: Request, res: Response, next: NextFunction) => {
-//     let error = new Error('Not Found');
-//     error.status = 404;
-//     next(error);
-// });
-
-// //catch all
-// app.use((error, req: Request, res: Response, next: NextFunction) => {
-//     res.status(error.status || 500);
-//     if (error.status == 404) {
-//         res.render('errors/404', {
-//             layout: '',
-//             style: ['styles/style.css'],
-//         });
-//     }
-//     else if (error.status == 403) {
-//         res.render('errors/403', {
-//             layout: '',
-//             style: ['styles/style.css'],
-//         });
-//     }
-//     else if (error.status == 500) {
-//         res.render('errors/500', {
-//             layout: '',
-//             style: ['styles/style.css'],
-//         });
-//     }
-// });

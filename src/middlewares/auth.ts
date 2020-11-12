@@ -1,16 +1,16 @@
 import { NextFunction, Request, Response } from "express";
 
 
-declare namespace e{
+export namespace Middlewares{
 
-     isAuth (req: Request, res: Response, next: NextFunction) {
-        if (req.isAuthenticated()) {
-            return next();
-        }
+    export class Auth {
+        isAuth(req: Request, res: Response, next: NextFunction) {
+            if (req.isAuthenticated()) {
+                return next();
+            }
     
-        req.flash('error_msg', "You aren't authenticated");
-        res.redirect("/login");
+            req.flash('error_msg', "You aren't authenticated");
+            res.redirect("/auth/login");
+        }
     }
-}
-export default { 
 }

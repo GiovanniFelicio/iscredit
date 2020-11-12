@@ -14,7 +14,7 @@ class LoginCotroller {
     }
     login(req: Request, res: Response, next: NextFunction) {
         passport.authenticate('local', {
-            successRedirect: '/auth/login',
+            successRedirect: '/',
             failureRedirect: '/auth/login',
             failureFlash: true,
             successFlash: true,
