@@ -1,0 +1,238 @@
+.area {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.area button {
+    margin: 0 10px;
+    border-radius: 3px;
+    border: 1px solid #75D3FF;
+    padding: 10px 15px;
+    color: #54E5EA;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.area button:hover {
+    border: 1px solid white;
+    color: rgb(83, 74, 74);
+}
+
+.chart {
+    position: relative;
+    border-radius: 50%;
+    background: rgb(230, 220, 220);
+    overflow: hidden;
+}
+
+.chart-sm {
+    width: 150px;
+    height: 150px;
+}
+
+.chart-lg {
+    width: 300px;
+    height: 300px;
+}
+
+.chart .radio_chart {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.chart .radio_chart.animate {
+    animation-name: circled;
+    animation-duration: 6s;
+    animation-timing-function: linear;
+    -moz-animation-name: circled;
+    -moz-animation-duration: 6s;
+    -moz-animation-timing-function: linear;
+    -webkit-animation-name: circled;
+    -webkit-animation-duration: 6s;
+    -webkit-animation-timing-function: linear;
+}
+.chart-sm .radio_chart.animate {
+    animation-name: circled;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    -moz-animation-name: circled;
+    -moz-animation-duration: 5s;
+    -moz-animation-timing-function: linear;
+    -webkit-animation-name: circled;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-timing-function: linear;
+}
+
+.chart .cap {
+    border-top: white 3px solid;
+    border-left: white 2px solid;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: scale(.8);
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, .5);
+}
+
+.chart-lg .value {
+    color: #54B6B9;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 400%;
+    top: 37.5%;
+    position: absolute;
+    text-shadow: -2px -2px 5px #54E5EA, 2px 2px 5px #75D3FF, 0 0 50px #75D3FF;
+}
+
+.chart-sm .value {
+    color: #54B6B9;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 150%;
+    top: 37.5%;
+    position: absolute;
+    text-shadow: -2px -2px 5px #54E5EA, 2px 2px 5px #75D3FF, 0 0 50px #75D3FF;
+}
+
+/* The animation based on an hexagon
+    * its make the radial anim effet
+    */
+
+@keyframes circled {
+    0% {
+        clip-path: polygon(100% 0, 100% 0%, 100% 0%, 100% 0%, 100% 0%, 50% 50%);
+        background: rgb(246, 0, 0);
+    }
+    25% {
+        clip-path: polygon(100% 0, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 50%);
+        background: rgb(246, 0, 0);
+    }
+    50% {
+        clip-path: polygon(100% 0, 100% 100%, 0% 100%, 0% 100%, 0 100%, 50% 50%);
+        background: rgb(217, 255, 0);
+    }
+    75% {
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0%, 0 0, 50% 50%);
+        background: rgb(217, 255, 0);
+    }
+    100% {
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0, 100% 0, 50% 50%);
+        background: rgb(30, 167, 5);
+    }
+}
+    
+.round {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.indice{
+    display: block;
+    color: #54E5EA;
+    font-size: 30px;
+    font-weight: bold;
+}
+body {
+    margin: 0px;
+}
+
+.myBg-success{
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6
+}
+.myBg-success:hover{
+    color: #3c763d;
+    background-color: #afec96;
+    border-color: #d6e9c6
+}
+.myBg-warning{
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc
+}
+.myBg-warning:hover{
+    color: #8a6d3b;
+    background-color: #faeca4;
+    border-color: #faebcc
+}
+.myBg-danger{
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1
+}
+.myBg-danger:hover{
+    color: #803130;
+    background-color: #f39a9a;
+    border-color: #ebccd1
+}
+.myBg-primary{
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.myBg-info{
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+.myContent{
+    height: 500px;
+    background-color: white;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.4);
+}
+.myLabel{
+    font-weight: bold;
+    font-size: 20px;
+}
+.myNavigation{
+    width: 200px;
+    height: auto;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.4);
+}
+.numQuest{
+    margin:2px;
+    width: 50px;
+	height: 50px;
+	border: 4px solid #004085;
+	color: #004085;
+	line-height: 45px;
+	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+}
+.myBg-numQuest{
+    color: #fff;
+    background-color: #004085;
+}
+.option-quest{
+    border: 1px solid rgb(139, 139, 139);
+    border-radius: 10px;
+    padding: 12px 0px 8px 10px;
+}
+.option-quest:hover{
+    border: 1px solid rgb(139, 139, 139);
+    border-radius: 10px;
+    padding: 12px 12px 12px 12px;
+    background-color: #d3d3d3;
+    cursor: pointer;
+}

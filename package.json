@@ -25,11 +25,12 @@
       "express-handlebars": "5.2.0",
       "express-session": "1.17.1",
       "moment": "2.29.1",
-      "node-pre-gyp": "0.16.0"
+      "node-pre-gyp": "0.16.0",
+      "@types/express-flash": "0.0.2"
    },
    "scripts": {
-      "start": "ts-node src/index.ts",
+      "start": "ts-node src/server.ts",
       "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm",
-      "dev": "nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register src/index.ts' -e ts"
+      "dev": "nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register src/server.ts' -e ts"
    }
 }
