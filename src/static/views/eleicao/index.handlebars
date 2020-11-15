@@ -5,21 +5,19 @@
     }
 </style>
 <div class="container-fluid">
-    <div class="text-center">
-        <div class="row">
-            {{#each prefeitos}}
-                <div class="card img-thumbnail text-center" style="width: 23%; margin: 5px">
-                    <div class="card-head">
-                        <img class="card-img-top custom" src="https://resultados.tse.jus.br/oficial/ele2020/divulgacao/oficial/426/fotos/pr/{{sqcand}}.jpeg" alt="{{nm}}">
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text"><strong>Nome:</strong> {{nm}}</p>
-                        <p class="card-text"><strong>Votos:</strong> {{vap}}</p>
-                        <p class="card-text"><strong>Percentual:</strong> {{pvap}}%</p>
-                    </div>
+    <div class="row" style="margin-left: 90px;">
+        {{#each prefeitos}}
+            <div class="card img-thumbnail text-center" style="width: 23%; margin: 5px">
+                <div class="card-head">
+                    <img class="card-img-top custom" src="https://resultados.tse.jus.br/oficial/ele2020/divulgacao/oficial/426/fotos/pr/{{sqcand}}.jpeg" alt="{{nm}}">
                 </div>
-            {{/each}}
-        </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Nome:</strong> {{nm}}</p>
+                    <p class="card-text"><strong>Votos:</strong> {{vap}}</p>
+                    <p class="card-text"><strong>Percentual:</strong> {{pvap}}%</p>
+                </div>
+            </div>
+        {{/each}}
     </div>
 </div>
     </div>
