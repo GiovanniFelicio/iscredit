@@ -1,25 +1,92 @@
 <style>
-    .custom{
+    .custom {
         max-width: 50%;
         height: 100%;
     }
+
+    .img-container {
+        overflow: hidden;
+    }
+
+    .img-container img {
+        width: 100%;
+        height: 100%;
+        -webkit-transition: -webkit-transform .5s ease;
+        transition: transform .5s ease;
+    }
+
+    .img-container:hover img {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
 </style>
 <div class="container-fluid">
-    <div class="row" style="margin-left: 90px;">
-        {{#each prefeitos}}
-            <div class="card img-thumbnail text-center" style="width: 23%; margin: 5px">
-                <div class="card-head">
-                    <img class="card-img-top custom" src="https://resultados.tse.jus.br/oficial/ele2020/divulgacao/oficial/426/fotos/pr/{{sqcand}}.jpeg" alt="{{nm}}">
-                </div>
-                <div class="card-body">
-                    <p class="card-text"><strong>Nome:</strong> {{nm}}</p>
-                    <p class="card-text"><strong>Votos:</strong> {{vap}}</p>
-                    <p class="card-text"><strong>Percentual:</strong> {{pvap}}%</p>
+    <div class="row">
+        {{#each prefeitos as |pref key|}}
+            <div class="col-3">
+                <div class="card img-thumbnail text-center" style="margin: 5px">
+                    <div class="card-head img-container shadow-sm p-3 mb-5 bg-white rounded">
+                        <img class="card-img-top custom border"
+                            src="https://resultados.tse.jus.br/oficial/ele2020/divulgacao/oficial/426/fotos/pr/{{sqcand}}.jpeg"
+                            alt="{{nm}}">
+                    </div>
+                    <div class="card-body">
+                        <fieldset class="border">
+                            <p class="card-text"><strong>Nome:</strong> {{nm}}</p>
+                            <p class="card-text"><strong>Votos:</strong> {{vap}}</p>
+                            <p class="card-text"><strong>Percentual:</strong> {{pvap}}%</p>
+                        </fieldset>
+                    </div>
                 </div>
             </div>
         {{/each}}
-    </div>
-</div>
+        </div>
+    <hr>
+    <div class="row" style="margin-left: 20px;">
+        <div class="col-3"></div>
+        <div class="col">
+            <div class="card bg-light mb-3">
+                <div class="card-header text-center" style="font-family: 'Times New Roman', Helvetica, sans-serif; font-weight: bold; font-size: 30px;">Brancos e Nulos</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-center h4"><strong>Prefeito</strong></p>
+                            <hr>
+                            <fieldset class="border">
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-text"><strong>Brancos:</strong> {{brancosNulosPrefeito.vb}}</p>
+                                        <p class="card-text"><strong>Nulos:</strong> {{brancosNulosPrefeito.vn}}</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text"><strong>Percentual:</strong> {{brancosNulosPrefeito.pvb}}%</p>
+                                        <p class="card-text"><strong>Percentual:</strong> {{brancosNulosPrefeito.pvn}}%</p>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col">
+                            <p class="text-center h4"><strong>Vereador</strong></p>
+                            <hr>
+                            <fieldset class="border">
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-text"><strong>Brancos:</strong> {{brancosNulosVereador.vb}}</p>
+                                        <p class="card-text"><strong>Nulos:</strong> {{brancosNulosVereador.vn}}</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text"><strong>Percentual:</strong> {{brancosNulosVereador.pvb}}%</p>
+                                        <p class="card-text"><strong>Percentual:</strong> {{brancosNulosVereador.pvn}}%</p>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-3"></div>   
     </div>
     <div class="row">
         <div class="col mt-5">
@@ -35,7 +102,7 @@
                 <tbody>
                     {{#each vereadores}}
                         <tr>
-                            <td><img class="card-img-top img-thumbnail" style="width: 70px;" src="https://resultados.tse.jus.br/oficial/ele2020/divulgacao/oficial/426/fotos/pr/{{sqcand}}.jpeg" alt="{{nm}}"></td>
+                            <td class="img-container"><img class="card-img-top img-thumbnail" style="width: 70px; height: auto;" src="https://resultados.tse.jus.br/oficial/ele2020/divulgacao/oficial/426/fotos/pr/{{sqcand}}.jpeg" alt="{{nm}}"></td>
                             <td>{{nm}}</td>
                             <td>{{cc}}</td>
                             <td>{{vap}}</td>
@@ -49,9 +116,11 @@
     </div>
 </div>
 <script>
+    $(document).ready(function() {
+        $(this).scrollTop(45);
+
+    });
     $('#vereadores').DataTable({
-        "responsive": true,
-        "scrollY": "800px",
         "scrollCollapse": true
     });
 

@@ -7,9 +7,17 @@ class EleicaoController {
 
         const req = axios.get('https://resultados.tse.jus.br/oficial/ele2020/divulgacao/oficial/426/dados-simplificados/pr/pr74934-c0011-e000426-r.json');
 
-        var candidatosPrefeito = await req;    
+        var candidatosPrefeito = await req;
 
         var prefeitos = candidatosPrefeito.data['cand'];
+
+        var brancosNulosPrefeito: [] = [];
+
+        brancosNulosPrefeito['vb'] = candidatosPrefeito.data['vb'];
+        brancosNulosPrefeito['vn'] = candidatosPrefeito.data['vn'];
+        brancosNulosPrefeito['pvb'] = candidatosPrefeito.data['pvb'];
+        brancosNulosPrefeito['pvn'] = candidatosPrefeito.data['pvn'];
+        brancosNulosPrefeito['nmCargo'] = 'Prefeito';
 
         prefeitos.forEach((prefeito: []) => {
             switch (prefeito['nm']) {
@@ -55,6 +63,14 @@ class EleicaoController {
 
         var vereadores = candidatosVerador.data['cand'];
 
+        var brancosNulosVereador: [] = [];
+
+        brancosNulosVereador['vb'] = candidatosVerador.data['vb'];
+        brancosNulosVereador['vn'] = candidatosVerador.data['vn'];
+        brancosNulosVereador['pvb'] = candidatosVerador.data['pvb'];
+        brancosNulosVereador['pvn'] = candidatosVerador.data['pvn'];
+        brancosNulosVereador['nmCargo'] = 'Vereador';
+
         vereadores.sort((a, b) => {
             if (a['vap'] < b['vap']) {
                 return -1;
@@ -68,7 +84,9 @@ class EleicaoController {
         return response.render('eleicao/index', {
             layout: 'defaultEleicao',
             prefeitos: prefeitos,
-            vereadores: vereadores
+            vereadores: vereadores,
+            brancosNulosPrefeito: brancosNulosPrefeito,
+            brancosNulosVereador: brancosNulosVereador
         });
 
     }
