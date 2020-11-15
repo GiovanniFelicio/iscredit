@@ -22,7 +22,7 @@ class Main{
         
             this.app = express();        
 
-            this.initializeDatabase();
+            // this.initializeDatabase();
             this.initializeMiddlewares();
             this.initializeErrorHandling();
             this.initializeCache();

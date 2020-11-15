@@ -1,0 +1,60 @@
+<style>
+    .custom{
+        max-width: 50%;
+        height: 100%;
+    }
+</style>
+<div class="container-fluid">
+    <div class="text-center">
+        <div class="row">
+            {{#each prefeitos}}
+                <div class="card img-thumbnail text-center" style="width: 23%; margin: 5px">
+                    <div class="card-head">
+                        <img class="card-img-top custom" src="https://resultados.tse.jus.br/oficial/ele2020/divulgacao/oficial/426/fotos/pr/{{sqcand}}.jpeg" alt="{{nm}}">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Nome:</strong> {{nm}}</p>
+                        <p class="card-text"><strong>Votos:</strong> {{vap}}</p>
+                        <p class="card-text"><strong>Percentual:</strong> {{pvap}}%</p>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+    </div>
+    <div class="row">
+        <div class="col mt-5">
+            <table id="vereadores" class="table table-bordered text-center" style="background-color: white;">
+                <thead>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Coligações</th>
+                    <th>Votos</th>
+                    <th>Percentual</th>
+                    <th>Eleito</th>
+                </thead>
+                <tbody>
+                    {{#each vereadores}}
+                        <tr>
+                            <td><img class="card-img-top img-thumbnail" style="width: 70px;" src="https://resultados.tse.jus.br/oficial/ele2020/divulgacao/oficial/426/fotos/pr/{{sqcand}}.jpeg" alt="{{nm}}"></td>
+                            <td>{{nm}}</td>
+                            <td>{{cc}}</td>
+                            <td>{{vap}}</td>
+                            <td>{{pvap}}%</td>
+                            <td>{{#compare cc '=' s}} Sim {{else}} Não {{/compare}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $('#vereadores').DataTable({
+        "responsive": true,
+        "scrollY": "800px",
+        "scrollCollapse": true
+    });
+
+</script>

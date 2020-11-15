@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express'
-import UserController from 'src/controllers/UserController';
+import EleicaoController from 'src/controllers/EleicaoController';
 import { getRepository } from "typeorm"
 // import {Middlewares} from '../middlewares/auth'
 
@@ -11,6 +11,6 @@ const routes = Router();
 //     res.send("Ok");
 // });
 
-// routes.get('/:id', auth.isAuth, UserController.create);
+routes.get('/', EleicaoController.index);
 
 export default routes;
