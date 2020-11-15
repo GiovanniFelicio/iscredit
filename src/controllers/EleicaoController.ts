@@ -1,8 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import axios from "axios";
+import { Controller } from "src/decorators/Controller";
+import { HttpRequest } from "src/decorators/HttpRequest";
 
-class EleicaoController {
+@Controller('/eleicao')
+export class EleicaoController {
 
+    @HttpRequest('get', '/')
     async index(request: Request, response: Response) {        
 
         const req = axios.get('https://resultados.tse.jus.br/oficial/ele2020/divulgacao/oficial/426/dados-simplificados/pr/pr74934-c0011-e000426-r.json');
@@ -90,15 +94,4 @@ class EleicaoController {
         });
 
     }
-    compare(a, b) {
-        if (a.last_nom < b.last_nom) {
-            return -1;
-        }
-        if (a.last_nom > b.last_nom) {
-            return 1;
-        }
-        return 0;
-    }    
 }
-
-export default new EleicaoController();

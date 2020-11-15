@@ -2,7 +2,6 @@ import "reflect-metadata";
 import { createConnection } from "typeorm";
 import express from "express";
 import {Request, Response, NextFunction} from "express";
-import routes from "@routes/routes";
 import expressHandle from 'express-handlebars';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
@@ -12,7 +11,10 @@ import cookie from 'cookie-parser';
 import passport from 'passport';
 import * as auth from '@config/auth';
 import utils from '@utils/conditions';
-import errorMiddleware from './middlewares/error'
+import errorMiddleware from './middlewares/error';
+import {UserController} from "./controllers/UserController";
+import {EleicaoController} from "./controllers/EleicaoController";
+import {RouteDefinition} from "./models/transient/RouteDefinition";
 
 
 class Main{
@@ -29,17 +31,14 @@ class Main{
             this.initializePassport();
             this.initializeTemplate();
             this.initializeMessageFlash();
+            this.initializeControllers();
     
             //Path
             this.app.use(express.static(path.join(__dirname, 'static')));
             //Set View
             this.app.set('views', path.join(__dirname, 'static/views'));
-            //Routes
-            this.app.use(routes);
             
             this.listen();
-
-        
     }
 
     private initializeDatabase() {
@@ -93,6 +92,21 @@ class Main{
             res.locals.user = req.user || null;
             next();
         });
+    }
+
+    private initializeControllers() {
+        [UserController,EleicaoController].forEach(controller => {
+            const instance = new controller();
+            const prefix = Reflect.getMetadata('prefix', controller);
+            const routes: Array<RouteDefinition> = Reflect.getMetadata('routes', controller);
+            
+            routes.forEach(route => {
+              this.app[route.requestMethod](prefix + route.path, (req: express.Request, res: express.Response) => {
+                instance[route.methodName](req, res);
+              });
+            });
+          });
+          
     }
 
     public listen() {
