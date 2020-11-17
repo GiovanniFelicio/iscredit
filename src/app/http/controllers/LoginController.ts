@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import passport from "passport";
-import { Controller } from "src/decorators/Controller";
-import { HttpRequest } from "src/decorators/HttpRequest";
+import { Controller } from "@decorators/Controller";
+import { HttpRequest } from "@decorators/HttpRequest";
 
 @Controller('/auth')
 export class LoginController {

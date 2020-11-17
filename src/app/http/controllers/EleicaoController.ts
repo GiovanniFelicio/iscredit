@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import axios from "axios";
-import { Controller } from "src/decorators/Controller";
-import { HttpRequest } from "src/decorators/HttpRequest";
+import { Controller } from "@decorators/Controller";
+import { HttpRequest } from "@decorators/HttpRequest";
 
 @Controller('/eleicao')
 export class EleicaoController {

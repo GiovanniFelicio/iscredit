@@ -13,13 +13,13 @@
       "sourceMap": true,
       "baseUrl": "./",
       "paths": {
-         "@controllers/*": [".src/controllers/*"],
+         "@controllers/*": [".src/app/http/controllers/*"],
          "@models/*": ["src/app/models/*"],
          "@config/*": ["./src/config/*"],
          "@utils/*": ["./src/utils/*"],
          "@enums/*": ["./src/enums/*"],
-         "@interfaces/*": ["./src/interfaces/*"],
-         "@routes/*": ["./src/routes/*"]
+         "@interfaces/*": ["src/app/models/interfaces/*"],
+         "@decorators/*": ["./src/decorators/*"]
       }
    }
 }

@@ -1,12 +1,12 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import 'reflect-metadata'
-import {RouteDefinition} from "../models/transient/RouteDefinition";
+import {RouteDefinition} from "@models/interfaces/RouteDefinition";
 
 export class ControllersProvider{
 
     constructor(app: Express.Application) {
-        let dirControllers: string = path.join(__dirname, '../controllers');
+        let dirControllers: string = path.join(__dirname, '../http/controllers');
 
         let filesDirControllers: Array<string> = fs.readdirSync(dirControllers);
 

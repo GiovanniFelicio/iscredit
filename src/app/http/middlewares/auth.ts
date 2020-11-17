@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 
-
 export namespace Middlewares{
 
     export class Auth {
