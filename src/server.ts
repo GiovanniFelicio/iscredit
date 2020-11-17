@@ -11,7 +11,7 @@ import cookie from 'cookie-parser';
 import passport from 'passport';
 import * as auth from '@config/auth';
 import utils from '@utils/conditions';
-import errorMiddleware from './middlewares/error';
+import errorMiddleware from '@middlewares/error';
 import {ControllersProvider} from './app/providers/ControllersProvider';
 
 class Main{

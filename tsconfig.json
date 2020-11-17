@@ -19,6 +19,7 @@
          "@utils/*": ["./src/utils/*"],
          "@enums/*": ["./src/enums/*"],
          "@interfaces/*": ["src/app/models/interfaces/*"],
+         "@middlewares/*": ["./src/app/http/middlewares/*"],
          "@decorators/*": ["./src/decorators/*"]
       }
    }
