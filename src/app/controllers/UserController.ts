@@ -1,7 +1,7 @@
-import { User } from '@models/User';
+import { User } from 'src/app/models/User';
 import { Request, Response } from 'express';
 import { HttpRequest } from 'src/decorators/HttpRequest';
-import {Controller} from '../decorators/Controller'
+import {Controller} from '../../decorators/Controller'
 
 @Controller('/user')
 export class UserController {

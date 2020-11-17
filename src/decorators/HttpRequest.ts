@@ -1,5 +1,5 @@
 
-import {RouteDefinition} from '../models/transient/RouteDefinition';
+import {RouteDefinition} from '../app/models/transient/RouteDefinition';
 
 export const HttpRequest = (method: any, path: string): MethodDecorator => {
   return (target, propertyKey: string): void => {

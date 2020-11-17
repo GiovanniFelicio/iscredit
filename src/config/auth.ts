@@ -1,4 +1,4 @@
-import { User } from "@models/User";
+import { User } from "src/app/models/User";
 import * as pass from "passport-local"
 import { getRepository } from 'typeorm'
 

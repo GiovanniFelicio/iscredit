@@ -12,30 +12,24 @@ import passport from 'passport';
 import * as auth from '@config/auth';
 import utils from '@utils/conditions';
 import errorMiddleware from './middlewares/error';
-import {UserController} from "./controllers/UserController";
-import {EleicaoController} from "./controllers/EleicaoController";
-import {RouteDefinition} from "./models/transient/RouteDefinition";
-
+import {ControllersProvider} from './app/providers/ControllersProvider';
 
 class Main{
     public app: express.Application;
 
     constructor() {
         
-            this.app = express();        
+            this.app = express();
 
-            // this.initializeDatabase();
             this.initializeMiddlewares();
             this.initializeErrorHandling();
             this.initializeCache();
             this.initializePassport();
             this.initializeTemplate();
             this.initializeMessageFlash();
-            this.initializeControllers();
-    
-            //Path
+            new ControllersProvider(this.app);
+
             this.app.use(express.static(path.join(__dirname, 'static')));
-            //Set View
             this.app.set('views', path.join(__dirname, 'static/views'));
             
             this.listen();
@@ -92,21 +86,6 @@ class Main{
             res.locals.user = req.user || null;
             next();
         });
-    }
-
-    private initializeControllers() {
-        [UserController,EleicaoController].forEach(controller => {
-            const instance = new controller();
-            const prefix = Reflect.getMetadata('prefix', controller);
-            const routes: Array<RouteDefinition> = Reflect.getMetadata('routes', controller);
-            
-            routes.forEach(route => {
-              this.app[route.requestMethod](prefix + route.path, (req: express.Request, res: express.Response) => {
-                instance[route.methodName](req, res);
-              });
-            });
-          });
-          
     }
 
     public listen() {

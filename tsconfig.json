@@ -14,7 +14,7 @@
       "baseUrl": "./",
       "paths": {
          "@controllers/*": [".src/controllers/*"],
-         "@models/*": ["./src/models/*"],
+         "@models/*": ["src/app/models/*"],
          "@config/*": ["./src/config/*"],
          "@utils/*": ["./src/utils/*"],
          "@enums/*": ["./src/enums/*"],

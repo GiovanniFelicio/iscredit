@@ -1,7 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import passport from "passport";
+import { Controller } from "src/decorators/Controller";
+import { HttpRequest } from "src/decorators/HttpRequest";
 
-class LoginCotroller {
+@Controller('/auth')
+export class LoginController {
+
+    @HttpRequest('get','/login')
     async index(req: Request, res: Response) {
         return res.render('auth/login', {
             layout: '',
@@ -12,6 +17,8 @@ class LoginCotroller {
                 'bootstrap.js']
         });
     }
+
+    @HttpRequest('post','/login')
     login(req: Request, res: Response, next: NextFunction) {
         passport.authenticate('local', {
             successRedirect: '/',
@@ -21,5 +28,3 @@ class LoginCotroller {
         })(req, res, next);
     }
 }
-
-export default new LoginCotroller();
