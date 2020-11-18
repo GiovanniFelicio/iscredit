@@ -1,4 +1,4 @@
-import { User } from "src/app/models/User";
+import { User } from "@models/User";
 import * as pass from "passport-local"
 import { getRepository } from 'typeorm'
 
@@ -14,13 +14,14 @@ export function pp(passport) {
                 }
                 if (password !== user.password) {
                     return done(null, false, { message: 'Incorrect Password' });
-                } else {                    
-                    return done(null, user, { message: 'Authenticated'});
+                } else {
+                    return done(null, user, { message: 'Authenticated' });
                 }
             }).catch((err) => {
                 return done(err);
             });
     }));
+    
     passport.serializeUser((user: User, done) => {
         done(null, user.id);
     });

@@ -1,9 +1,8 @@
+import { RouteDefinition } from '../interfaces/RouteDefinition';
 
-import {RouteDefinition} from '../app/models/interfaces/RouteDefinition';
-
-export const HttpRequest = (method: any, path: string): MethodDecorator => {
+export const HttpRequest = (method: any, path: string, middlewares?: Array<any>): MethodDecorator => {
   return (target, propertyKey: string): void => {
-    if (! Reflect.hasMetadata('routes', target.constructor)) {
+    if (!Reflect.hasMetadata('routes', target.constructor)) {
       Reflect.defineMetadata('routes', [], target.constructor);
     }
 
@@ -12,7 +11,8 @@ export const HttpRequest = (method: any, path: string): MethodDecorator => {
     routes.push({
       requestMethod: method,
       path,
-      methodName: propertyKey
+      methodName: propertyKey,
+      middlewares: middlewares
     });
     Reflect.defineMetadata('routes', routes, target.constructor);
   };

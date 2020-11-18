@@ -17,10 +17,10 @@
          "@models/*": ["src/app/models/*"],
          "@config/*": ["./src/config/*"],
          "@utils/*": ["./src/utils/*"],
-         "@enums/*": ["./src/enums/*"],
+         "@enums/*": ["src/app/models/enums/*"],
          "@interfaces/*": ["src/app/models/interfaces/*"],
          "@middlewares/*": ["./src/app/http/middlewares/*"],
-         "@decorators/*": ["./src/decorators/*"]
+         "@decorators/*": ["src/app/models/decorators/*"]
       }
    }
 }

@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import express from "express";
-import {Request, Response, NextFunction} from "express";
+import { Request, Response, NextFunction } from "express";
 import expressHandle from 'express-handlebars';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
@@ -12,27 +12,28 @@ import passport from 'passport';
 import * as auth from '@config/auth';
 import utils from '@utils/conditions';
 import errorMiddleware from '@middlewares/error';
-import {ControllersProvider} from './app/providers/ControllersProvider';
+import { ControllersProvider } from './app/providers/ControllersProvider';
 
-class Main{
+class Main {
     public app: express.Application;
 
     constructor() {
-        
-            this.app = express();
 
-            this.initializeMiddlewares();
-            this.initializeErrorHandling();
-            this.initializeCache();
-            this.initializePassport();
-            this.initializeTemplate();
-            this.initializeMessageFlash();
-            new ControllersProvider(this.app);
+        this.app = express();
 
-            this.app.use(express.static(path.join(__dirname, 'static')));
-            this.app.set('views', path.join(__dirname, 'static/views'));
-            
-            this.listen();
+        this.initializeDatabase();
+        this.initializeMiddlewares();
+        this.initializeErrorHandling();
+        this.initializeCache();
+        this.initializePassport();
+        this.initializeTemplate();
+        this.initializeMessageFlash();
+        new ControllersProvider(this.app);
+
+        this.app.use(express.static(path.join(__dirname, 'static')));
+        this.app.set('views', path.join(__dirname, 'static/views'));
+
+        this.listen();
     }
 
     private initializeDatabase() {
@@ -44,7 +45,7 @@ class Main{
     private initializeMiddlewares() {
         this.app.use(bodyParser.json());
         this.app.use(express.json());
-        this.app.use(bodyParser.urlencoded({extended: true}))
+        this.app.use(bodyParser.urlencoded({ extended: true }))
     }
 
     private initializeErrorHandling() {
@@ -64,7 +65,7 @@ class Main{
             secret: 'dwdjk#n152478D4DSFF4&bd!vy&',
             resave: true,
             saveUninitialized: true,
-            cookie: {maxAge: 60000}
+            cookie: { maxAge: 60000 }
         }));
     }
 
@@ -89,10 +90,11 @@ class Main{
     }
 
     public listen() {
-        this.app.listen(3000, ()=>{
+
+        this.app.listen(3000, () => {
             console.log('Server is running');
         });
     }
 }
-
+ 
 export default new Main();

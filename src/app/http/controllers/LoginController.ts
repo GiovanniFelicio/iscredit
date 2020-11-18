@@ -6,7 +6,7 @@ import { HttpRequest } from "@decorators/HttpRequest";
 @Controller('/auth')
 export class LoginController {
 
-    @HttpRequest('get','/login')
+    @HttpRequest('get', '/login')
     async index(req: Request, res: Response) {
         return res.render('auth/login', {
             layout: '',
@@ -18,7 +18,7 @@ export class LoginController {
         });
     }
 
-    @HttpRequest('post','/login')
+    @HttpRequest('post', '/login')
     login(req: Request, res: Response, next: NextFunction) {
         passport.authenticate('local', {
             successRedirect: '/',

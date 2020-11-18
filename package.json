@@ -33,12 +33,20 @@
       "@types/passport-local": "1.0.33",
       "@types/express-flash": "0.0.2",
       "axios": "0.21.0",
-      "routing-controllers": "0.9.0-alpha.6"
+      "commander": "6.2.0",
+      "figlet": "1.5.0",
+      "inquirer": "7.3.3",
+      "shelljs": "0.8.4",
+      "cli-table": "0.3.1"
    },
    "scripts": {
       "start": "ts-node src/server.ts",
       "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm",
       "dev": "nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register src/server.ts' -e ts",
       "prod": "ts-node -r tsconfig-paths/register src/server.ts -e ts"
+   },
+   "bin": {
+      "controller": "src/app/console/controller.js",
+      "model": "src/app/console/models.js"
    }
 }
