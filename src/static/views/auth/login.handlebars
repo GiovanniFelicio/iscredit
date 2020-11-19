@@ -1,64 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>LogIn SmartBr</title>
-   <!--Made with love by Mutiullah Samim -->
-    {{#each css}}
-        <link rel="stylesheet" href="/css/{{this}}">
-    {{/each}}
-    {{#each vendors}}
-        <link rel="stylesheet" href="/vendors/{{this}}">
-    {{/each}}
-    {{#each js}}
-        <script src="/js/{{this}}"></script>
-    {{/each}}
+	<!--Made with love by Mutiullah Samim -->
+	{{#each css}}
+	<link rel="stylesheet" href="/css/{{this}}">
+	{{/each}}
+	{{#each vendors}}
+	<link rel="stylesheet" href="/vendors/{{this}}">
+	{{/each}}
+	{{#each js}}
+	<script src="/js/{{this}}"></script>
+	{{/each}}
 </head>
+
 <body>
-<div class="container">
-	{{#if success}}
+	<div class="container">
+		{{#if success}}
 		<div class="alert alert-success">
 			{{success}}
 		</div>
-	{{/if}}
-	{{#if error}}
+		{{/if}}
+		{{#if error}}
 		<div class="alert alert-danger">
 			{{error}}
 		</div>
-	{{/if}}
-	<div class="login-wrap customscroll d-flex align-items-center flex-wrap justify-content-center pd-20">
-		<div class="login-box bg-white box-shadow pd-30 border-radius-5">
-			<img src="vendors/images/login-img.png" alt="login" class="login-img">
-			<h2 class="text-center mb-30">Login</h2>
-			<form action="/auth/login" method="POST">
-				<div class="input-group custom input-group-lg">
-					<input type="text" class="form-control" name="login" placeholder="Login">
-					<div class="input-group-append custom">
-						<span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
-					</div>
-				</div>
-				<div class="input-group custom input-group-lg">
-					<input type="password" class="form-control" name="password" placeholder="**********">
-					<div class="input-group-append custom">
-						<span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="input-group">
-							<input class="btn btn-outline-primary btn-lg btn-block" type="submit" value="Sign In">
+		{{/if}}
+		<div class="login-wrap customscroll d-flex align-items-center flex-wrap justify-content-center pd-20">
+			<div class="login-box bg-white box-shadow pd-30 border-radius-5">
+				<img src="vendors/images/login-img.png" alt="login" class="login-img">
+				<h2 class="text-center mb-30">Login</h2>
+				<form action="/auth/login" method="POST">
+					<input type="hidden" name="_csrf" value="{{csrfToken}}" />
+					<div class="input-group custom input-group-lg">
+						<input type="text" class="form-control" name="login" placeholder="Login">
+						<div class="input-group-append custom">
+							<span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<div class="forgot-password padding-top-10"><a href="forgot-password.php">Forgot Password</a></div>
+					<div class="input-group custom input-group-lg">
+						<input type="password" class="form-control" name="password" placeholder="**********">
+						<div class="input-group-append custom">
+							<span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
+						</div>
 					</div>
-				</div>
-			</form>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="input-group">
+								<input class="btn btn-outline-primary btn-lg btn-block" type="submit" value="Sign In">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="forgot-password padding-top-10"><a href="forgot-password.php">Forgot
+									Password</a></div>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
-	</div>
-<script>
-	$(".alert").fadeTo(3200, 800).slideUp(1000, function(){
-		$(".alert").slideUp(500);
-	});
-</script>
+		<script>
+			$(".alert").fadeTo(3200, 800).slideUp(1000, function () {
+				$(".alert").slideUp(500);
+			});
+		</script>
 </body>
+
 </html>

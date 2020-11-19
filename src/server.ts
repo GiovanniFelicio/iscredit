@@ -22,9 +22,9 @@ class Main {
         this.app = express();
 
         this.initializeDatabase();
-        this.initializeMiddlewares();
         this.initializeErrorHandling();
         this.initializeCache();
+        this.initializeMiddlewares();
         this.initializePassport();
         this.initializeTemplate();
         this.initializeMessageFlash();
@@ -45,7 +45,7 @@ class Main {
     private initializeMiddlewares() {
         this.app.use(bodyParser.json());
         this.app.use(express.json());
-        this.app.use(bodyParser.urlencoded({ extended: true }))
+        this.app.use(bodyParser.urlencoded({ extended: true }));
     }
 
     private initializeErrorHandling() {
@@ -96,5 +96,5 @@ class Main {
         });
     }
 }
- 
+
 export default new Main();

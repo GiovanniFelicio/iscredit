@@ -10,11 +10,10 @@ export class LoginController {
     async index(req: Request, res: Response) {
         return res.render('auth/login', {
             layout: '',
-            css: ['bootstrap.css',
-                'all.min.css'],
+            css: ['bootstrap.css', 'all.min.css'],
             vendors: ['styles/style.css'],
-            js: ['jquery.min.js',
-                'bootstrap.js']
+            js: ['jquery.min.js', 'bootstrap.js'],
+            csrfToken: req.csrfToken()
         });
     }
 

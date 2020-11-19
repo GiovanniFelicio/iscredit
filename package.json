@@ -37,7 +37,9 @@
       "figlet": "1.5.0",
       "inquirer": "7.3.3",
       "shelljs": "0.8.4",
-      "cli-table": "0.3.1"
+      "cli-table": "0.3.1",
+      "csurf": "1.11.0",
+      "@types/csurf": "1.11.0"
    },
    "scripts": {
       "start": "ts-node src/server.ts",
