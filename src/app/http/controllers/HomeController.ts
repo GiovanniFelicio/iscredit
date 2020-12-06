@@ -5,6 +5,7 @@ import { HttpRequest } from '@models/decorators/HttpRequest';
 import { Controller } from '@decorators/Controller'
 import Auth from '@middlewares/auth';
 import { getRepository } from 'typeorm';
+import { Authorization } from '@models/Authorization';
 
 @Controller('/')
 export class HomeController {
@@ -26,5 +27,24 @@ export class HomeController {
                 res.status(500);
             });
 
+    }
+
+    @HttpRequest('get', 'user')
+    public async findUser(req: Request, res: Response) {                
+        
+        let user = await getRepository(User)
+                    .createQueryBuilder("USER")
+                    .getMany();
+
+        res.json(user);
+    }
+
+    @HttpRequest('get', 'autho')
+    public async findAuths(req: Request, res: Response) {                
+
+        let auth = await getRepository(Authorization)
+                    .createQueryBuilder("AUTHORIZATION")
+                    .getMany();
+        res.json(auth);
     }
 }
