@@ -65,7 +65,7 @@ class Main {
             secret: 'dwdjk#n152478D4DSFF4&bd!vy&',
             resave: true,
             saveUninitialized: true,
-            cookie: { maxAge: 60000 }
+            cookie: { maxAge: 300000 }
         }));
     }
 

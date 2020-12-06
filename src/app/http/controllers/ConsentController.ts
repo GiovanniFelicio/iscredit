@@ -19,20 +19,18 @@ export class ConsentController {
                 return true;
             }
         }
-        
-        let basicToken = Util.generateBasicAuth("PSDBR-NCA-19", "09112013");
 
         const dataAuth = qs.stringify({
             scope: 'accounts',
             grant_type: 'client_credentials'
         });
 
-        let request = axios.post('https://auth.obiebank.banfico.com/auth/realms/provider/protocol/openid-connect/token', 
+        let request = axios.post('https://gw-dev.obiebank.banfico.com/obie-aisp/v3.1/aisp/account-access-consents', 
             dataAuth,
             {
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    "Authorization": basicToken
+                    "Content-Type": "application/json",
+                    "x-fapi-financial-id": "ISCREDIT"
             }
         })
 

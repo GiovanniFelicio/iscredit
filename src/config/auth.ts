@@ -8,7 +8,8 @@ const LocalStrategy = pass.Strategy
 export function pp(passport) {
     passport.use(new LocalStrategy({ usernameField: 'login', passwordField: 'password' }, (login: string, password: string, done) => {
         getRepository(User).createQueryBuilder('USER')
-            .where('USER.login = :login', { login: login })
+            .where('USER.document = :login', { login: login })
+            .orWhere('USER.email = :login', { login: login })
             .leftJoinAndSelect("USER.authorizationToken", "authorizationToken")
             .getOne().then(async (user: User) => {
                 if (!user) {
@@ -21,7 +22,6 @@ export function pp(passport) {
                     let authorizationController = new AuthorizationController();
 
                     let isAuth: boolean = await authorizationController.index(user);
-                    // let isAuth: boolean = true;
                     
                     if (isAuth) {
                         return done(null, user, { message: 'Authenticated' });

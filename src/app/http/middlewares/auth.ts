@@ -7,9 +7,9 @@ class Auth {
         if (req.isAuthenticated()) {
             return next();
         }
-
-        req.flash('error_msg', "You aren't authenticated");
-        res.redirect("/auth/login");
+        
+        res.status(403);
+        res.send("");
     }
 }
 

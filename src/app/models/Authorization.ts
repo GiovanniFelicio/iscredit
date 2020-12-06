@@ -32,9 +32,6 @@ export class Authorization {
 
     @BeforeInsert()
     private setDates() {
-        if (typeof(this.expireAt) == undefined) {
-            this.expireAt = new Date(Date.now() + (1000*60*5))
-        }
-        this.createdAt = new Date();
+        this.createdAt = new Date(Date.now() - (1000*60*3));
     }
 }

@@ -19,8 +19,8 @@ export class AuthorizationController {
                 return true;
             }
         }
-        
-        let basicToken = Util.generateBasicAuth("PSDBR-NCA-19", "09112013");
+
+        let basicToken = Util.generateBasicAuth("PSDBR-NCA-ISCREDIT", "iscredit");
 
         const dataAuth = qs.stringify({
             scope: 'accounts',
@@ -42,8 +42,12 @@ export class AuthorizationController {
 
         let auth: Authorization = new Authorization();
 
+        let result = new Date(Date.now() - (1000*60*3));
+        result.setDate(result.getMinutes() + 5);
+
         auth.accessToken = access_token;
         auth.user = user
+        auth.expireAt = result
 
         auth = getRepository(Authorization).create(auth);
         
