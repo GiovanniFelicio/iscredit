@@ -12,13 +12,13 @@ export class LoginController {
             layout: '',
             css: ['bootstrap.css', 'all.min.css'],
             vendors: ['styles/style.css'],
-            js: ['jquery.min.js', 'bootstrap.js'],
-            csrfToken: req.csrfToken()
+            js: ['jquery.min.js', 'bootstrap.js']
         });
     }
 
     @HttpRequest('post', '/login')
     login(req: Request, res: Response, next: NextFunction) {
+
         passport.authenticate('local', {
             successRedirect: '/',
             failureRedirect: '/auth/login',

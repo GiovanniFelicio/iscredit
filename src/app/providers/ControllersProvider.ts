@@ -9,8 +9,8 @@ export class ControllersProvider {
 
     constructor(app: Express.Application) {
 
-        const csrfMiddleware = csurf({ cookie: true });
-        app['use'](csrfMiddleware);
+        // const csrfMiddleware = csurf({ cookie: true });
+        // app['use'](csrfMiddleware);
 
         let dirControllers: string = path.join(__dirname, '../http/controllers');
 
@@ -30,12 +30,12 @@ export class ControllersProvider {
 
                     routes.forEach(route => {
                         if (route.middlewares != undefined && route.middlewares.length > 0) {
-                            route.middlewares.push(csrfMiddleware);
+                            // route.middlewares.push(csrfMiddleware);
                             app[route.requestMethod](prefix + route.path, route.middlewares, (req: Express.Request, res: Express.Response) => {
                                 instance[route.methodName](req, res);
                             });
                         } else {
-                            app[route.requestMethod](prefix + route.path, [csrfMiddleware], (req: Express.Request, res: Express.Response, next: NextFunction) => {
+                            app[route.requestMethod](prefix + route.path, (req: Express.Request, res: Express.Response, next: NextFunction) => {
                                 instance[route.methodName](req, res, next);
                             });
                         }

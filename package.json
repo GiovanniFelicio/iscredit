@@ -40,7 +40,11 @@
       "cli-table": "0.3.1",
       "csurf": "1.11.0",
       "@types/csurf": "1.11.0",
-      "sqlite3": "5.0.0"
+      "sqlite3": "5.0.0",
+      "jsonwebtoken": "8.5.1",
+      "@types/jsonwebtoken": "8.5.0",
+      "btoa": "1.2.1",
+      "@types/btoa": "1.2.3"
    },
    "scripts": {
       "start": "ts-node src/server.ts",

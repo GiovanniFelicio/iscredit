@@ -3,9 +3,12 @@ import {
     PrimaryGeneratedColumn, 
     Column, 
     CreateDateColumn, 
-    UpdateDateColumn} from "typeorm";
+    UpdateDateColumn,
+    OneToOne,
+    JoinColumn} from "typeorm";
 
 import {EnumRoleUser} from '@models/enums/EnumRoleUser';
+import { Authorization } from "./Authorization";
 
 @Entity('USER')
 export class User {
@@ -22,16 +25,26 @@ export class User {
     @Column({nullable: true, unique: true})
     email: string;
 
+    @Column({nullable: true, unique: true})
+    document: string;
+
     @Column({nullable: true})
     password: string;
 
+    @OneToOne(() => Authorization, auth => auth.user)
+    @JoinColumn()
+    authorizationToken: Authorization;
+
     @Column({nullable: false, length: 2})
     role: EnumRoleUser;
+
+    @Column({name: 'session_token' ,nullable: true})
+    sessionToken: string;
 
     @CreateDateColumn({name: 'created_at'})
     createdAt: Date;
 
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
-    
+
 }
