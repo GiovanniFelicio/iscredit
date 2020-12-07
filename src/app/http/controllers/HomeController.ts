@@ -8,6 +8,7 @@ import { getRepository } from 'typeorm';
 import { Authorization } from '@models/Authorization';
 import jwt from 'jsonwebtoken';
         import uuidv1 from 'uuid/v1';
+import { Bank } from '@models/Bank';
 
 @Controller('/')
 export class HomeController {
@@ -33,7 +34,7 @@ export class HomeController {
 
     }
 
-    @HttpRequest('get', 'user')
+    @HttpRequest('get', 'userlist')
     public async findUser(req: Request, res: Response) {    
 
         let user = await getRepository(User)
@@ -43,7 +44,7 @@ export class HomeController {
         res.json(user);
     }
 
-    @HttpRequest('get', 'autho')
+    @HttpRequest('get', 'authlist')
     public async findAuths(req: Request, res: Response) {                
 
         let auth = await getRepository(Authorization)
@@ -52,9 +53,18 @@ export class HomeController {
         res.json(auth);
     }
 
+    @HttpRequest('get', 'banklist')
+    public async findBanks(req: Request, res: Response) {                
+
+        let banks = await getRepository(Bank)
+                    .createQueryBuilder("BANK")
+                    .getMany();
+        res.json(banks);
+    }
+
     @HttpRequest('get', 'teste')
     public teste(req:Request, res:Response) {        
-        const appCallback = 'https://yourapplication.com/auth/callback';
+        const appCallback = 'HTTPS://YOURAPPLICATION.COM/AUTH/CALLBACK';
         const getExp = (minutes = 60) => Math.floor(Date.now() / 1000) + (minutes * 60);
         const getClaims = (type: string,consentId: string) => ({
             userinfo: {
