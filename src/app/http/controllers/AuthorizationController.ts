@@ -42,8 +42,7 @@ export class AuthorizationController {
 
         let auth: Authorization = new Authorization();
 
-        let result = new Date(Date.now() - (1000*60*3));
-        result.setDate(result.getMinutes() + 5);
+        let result = new Date(Date.now() - (1000*60*58.5*3));
 
         auth.accessToken = access_token;
         auth.user = user
