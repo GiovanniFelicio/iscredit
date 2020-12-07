@@ -18,17 +18,14 @@ export class Consent {
     @Column({type: 'varchar', length: 100})
     consentId: string;
 
+    @ManyToOne(() => User, user => user.consents)
+    user: User
+
     @Column({type: 'varchar', length: 80})
-    expirationDateTime: string;
+    expirationDateTime: Date;
     
-    @Column({type: 'varchar', length: 80})
-    Permissions: Array<string>;
-
-    @Column({type: 'varchar', length: 80})
-    transactionFromDateTime: string;
-
-    @Column({type: 'varchar', length: 80})
-    transactionToDateTime: string;
+    @Column({type: 'text'})
+    permissions: Array<string>;
 
     @CreateDateColumn({name: 'created_at'})
     createdAt: Date;
@@ -36,33 +33,3 @@ export class Consent {
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
 }
-
-`
-{
-    "Data": {
-      "ExpirationDateTime": "2019-05-20T11:12:49.333Z",
-      "Permissions": [
-        "ReadAccountsBasic",
-        "ReadAccountsDetail",
-        "ReadBalances",
-        "ReadBeneficiariesDetail",
-        "ReadDirectDebits",
-        "ReadProducts",
-        "ReadStandingOrdersDetail",
-        "ReadTransactionsCredits",
-        "ReadTransactionsDebits",
-        "ReadTransactionsDetail",
-        "ReadOffers",
-        "ReadPAN",
-        "ReadParty",
-        "ReadPartyPSU",
-        "ReadScheduledPaymentsDetail",
-        "ReadStatementsDetail"
-      ],
-      "TransactionFromDateTime": "2019-02-20T11:12:49.333Z",
-      "TransactionToDateTime": "2019-02-20T11:12:49.333Z"
-    },
-    "Risk": {}
-  }
-  
-`

@@ -8,13 +8,8 @@ export class LoginController {
 
     @HttpRequest('get', '/login')
     async index(req: Request, res: Response) {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-
-        let toda = mm + '/' + dd + '/' + yyyy;
-        console.log(toda)
+        let date: Date = new Date(Date.now() - (1000*60*60*3));
+        console.log(date.toJSON())
         return res.render('auth/login', {
             layout: '',
             css: ['bootstrap.css', 'all.min.css'],

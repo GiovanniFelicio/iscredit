@@ -5,10 +5,12 @@ import {
     CreateDateColumn, 
     UpdateDateColumn,
     OneToOne,
-    JoinColumn} from "typeorm";
+    JoinColumn,
+    OneToMany} from "typeorm";
 
 import {EnumRoleUser} from '@models/enums/EnumRoleUser';
 import { Authorization } from "./Authorization";
+import { Consent } from "./Consent";
 
 @Entity('USER')
 export class User {
@@ -34,6 +36,9 @@ export class User {
     @OneToOne(() => Authorization, auth => auth.user)
     @JoinColumn()
     authorizationToken: Authorization;
+
+    @OneToMany(() => Consent, consent => consent.user)
+    consents: Consent[];
 
     @Column({nullable: false, length: 2})
     role: EnumRoleUser;

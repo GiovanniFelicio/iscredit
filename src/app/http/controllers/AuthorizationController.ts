@@ -14,11 +14,6 @@ export class AuthorizationController {
         if (typeof(user) == undefined) {
             return false;
         }
-        if (typeof(user.authorizationToken) != undefined && user.authorizationToken != null) {
-            if (user.authorizationToken.expireAt < new Date()) {
-                return true;
-            }
-        }
 
         let basicToken = Util.generateBasicAuth("PSDBR-NCA-ISCREDIT", "iscredit");
 
